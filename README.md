@@ -15,6 +15,18 @@ This extension has a backend GUI and can search for text and link it automatical
 * update database
 * copy the folder additionally to **/web**/system/modules - otherwise the icon won't appear
 
+### Screenshots
+
+Backend
+![Backend](https://github.com/mandrael/contao-autolink/blob/main/docs/images/autolink-backend.png)
+
+Create links
+![Create links](https://github.com/mandrael/contao-autolink/blob/main/docs/images/autolink-link-creation.png)
+
+New Icon
+
+![New Icon](https://github.com/mandrael/contao-autolink/blob/main/docs/images/autolink-new-icon.png)
+
 -----
 
 This Contao extension is based on the modified extension from kikmedia, which was forked from aschempp:
