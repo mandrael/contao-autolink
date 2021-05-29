@@ -1,5 +1,5 @@
 ## Autolink –– Automatic link creation for Contao
-This extension has a backend GUI and can search for text and link it automatically if search term found. The search should be restricted to the needed Contao pages.
+This extension has a backend GUI. It can search for text and automatically creates a link if search term was found. The search can be restricted to the needed Contao pages.
 
 * compatibility: Contao >= 3.2.0, now including Contao 4.11 and PHP 7.4
 * now with svg wand icon  instead of the gif
