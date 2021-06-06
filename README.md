@@ -13,7 +13,7 @@ This extension has a backend GUI. It can search for text and automatically creat
 * copy the folder "autolink" to /system/modules
 * renew prod. cache
 * update database
-* copy the folder additionally to **/web**/system/modules - otherwise the icon won't appear
+* composer update will create new symlinks and the icon will show in the BE
 
 ### Screenshots
 
