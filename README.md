@@ -1,8 +1,9 @@
 ## Autolink –– Automatic link creation for Contao
 This extension has a backend GUI. It can search for text and automatically creates a link if search term was found. The search can be restricted to the needed Contao pages.
 
-* compatibility: Contao >= 3.2.0, now including Contao 4.11 and PHP 7.4
+* compatibility: Contao >= 3.2.0, now tested with Contao 4.13 and PHP 8.1
 * now with svg wand icon  instead of the gif
+* Changed Database to InnoDB and charset to utfmb4 (database.sql)
 
 ### Installation
 #### Contao 3
