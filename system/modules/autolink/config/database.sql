@@ -41,4 +41,4 @@ CREATE TABLE `tl_autolink` (
   `start` varchar(10) NOT NULL default '',
   `stop` varchar(10) NOT NULL default '',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
