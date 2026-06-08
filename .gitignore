@@ -5,3 +5,8 @@
 .php-cs-fixer.cache
 .phpunit.result.cache
 /.phpunit.cache/
+
+# Local working files — session handover / workspace instructions.
+# Never published; tracked exclusion so it travels with the repo.
+/status.md
+*.bak-*
