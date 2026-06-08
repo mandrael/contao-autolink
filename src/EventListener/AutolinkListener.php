@@ -49,6 +49,14 @@ class AutolinkListener
      */
     private const PROTECTED_CLASSES = ['toggler'];
 
+    /**
+     * simple_html_dom caps str_get_html() input at MAX_FILE_SIZE and silently
+     * returns false above it (600 KB upstream) — which would drop autolinking on
+     * large pages. We raise the cap; defining the constant before the require
+     * keeps the vendored parser byte-identical to upstream.
+     */
+    private const PARSER_MAX_FILE_SIZE = 4 * 1024 * 1024;
+
     public function __construct(
         private readonly Connection $connection,
         private readonly ContaoFramework $framework,
@@ -67,6 +75,7 @@ class AutolinkListener
 
         // Lazily load the bundled simple_html_dom parser (global functions/classes).
         if (!\function_exists('str_get_html')) {
+            \defined('MAX_FILE_SIZE') || \define('MAX_FILE_SIZE', self::PARSER_MAX_FILE_SIZE);
             require_once __DIR__.'/../Resources/contrib/simple_html_dom.php';
         }
 

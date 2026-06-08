@@ -13,7 +13,9 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 - DCA-Callbacks/Optionen modernisiert; das DB-Schema von `tl_autolink` bleibt
   unverändert (kein Migrations-Diff für bestehende Installationen).
 - HTML-Parser von simplehtmldom 1.11 (2008) auf 1.9.1 (2019) angehoben — PHP-8-fest
-  und mit korrigierten `text`-Selektoren.
+  und mit korrigierten `text`-Selektoren; byte-identisch zum Upstream-Release.
+- Parser-Größenlimit (`MAX_FILE_SIZE`) aus dem Listener auf 4 MB angehoben — große
+  Seiten werden zuverlässig verlinkt (der Upstream-Default von 600 KB übersprang sie still).
 
 ### Entfernt
 - MooTools-basierte Tooltips (`Tips`); Tooltip-Texte werden nun als natives

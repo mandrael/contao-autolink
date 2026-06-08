@@ -133,3 +133,17 @@ GNU Lesser General Public License v3.0 or later (`LGPL-3.0-or-later`) — see
 derived from. The bundled HTML parser
 (`src/Resources/contrib/simple_html_dom.php`) is under the MIT License — see
 [src/Resources/contrib/LICENSE](src/Resources/contrib/LICENSE).
+
+## The bundled HTML parser
+
+Front end matching uses
+[simple_html_dom 1.9.1](https://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/)
+(MIT), bundled byte-identical to the upstream release.
+
+An interesting detail on why it just keeps working: it stays compatible from
+PHP 5.6 through 8.4+ precisely because it is deliberately minimal — no type
+declarations (nothing for newer PHP versions to deprecate), magic `__get`/`__set`
+instead of dynamic properties (so it never trips the PHP 8.2 deprecation), and only
+the language's rock-stable core (arrays, strings, PCRE), avoiding every construct
+PHP has since removed. That same conservatism is also why it is robust rather than
+fast.
