@@ -46,6 +46,10 @@ Gesucht wird immer **wortgenau**: ein Begriff wird nur als vollständiges Wort b
 vollständige Phrase verlinkt, nie innerhalb eines größeren Wortes (z. B. wird
 „Salzburg" nicht in „Salzburger" verlinkt).
 
+Überschneiden sich Begriffe (z. B. „Salzburg" und „Pfadfinderhaus Salzburg"),
+gewinnt die **längere Phrase**: sie wird als Ganzes verlinkt, der darin enthaltene
+kürzere Begriff wird nicht erneut verlinkt — unabhängig von der Sortier-Reihenfolge.
+
 Pro Eintrag konfigurierbar: Groß-/Kleinschreibung, reguläre Ausdrücke, ein
 CSS-Selektor zur Eingrenzung des Suchbereichs, eine Sprache (`lang`-Attribut), ein
 Tooltip (als natives `title`-Attribut gerendert), Seitenbeschränkung (inkl.

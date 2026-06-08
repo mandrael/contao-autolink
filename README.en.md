@@ -45,6 +45,10 @@ it. The term is then linked automatically in the front end.
 Matching is always **whole-word**: a term only links as a complete word/phrase,
 never inside a larger word (so “Salzburg” is not linked inside “Salzburger”).
 
+When terms overlap (e.g. “Salzburg” and “Pfadfinderhaus Salzburg”), the **longer
+phrase wins**: it is linked as a whole and the shorter term it contains is not
+linked again inside it — regardless of the sort order.
+
 Per entry you can configure: case sensitivity, regular expressions, a CSS selector
 to restrict the search area, a language (`lang` attribute), a tooltip (rendered as
 a native `title` attribute), page restrictions (incl. subpages), a custom CSS

@@ -20,6 +20,10 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
   teuren HTML-Parsing übersprungen (Unicode-`mb_stripos`-Vorfilter). Bei vielen
   konfigurierten Begriffen pro Seite (z. B. Kursseiten) deutlich schneller
   (Beispiel: 60 nicht vorkommende Begriffe ~175 ms → ~3 ms).
+- Überlappende Begriffe werden deterministisch aufgelöst: der längere Begriff
+  gewinnt (längster zuerst verarbeitet), **unabhängig von der manuellen Sortierung**.
+  So wird z. B. „Pfadfinderhaus Salzburg" bzw. „Salzburg, Hotel Momentum" als ganze
+  Phrase verlinkt, ohne dass das enthaltene „Salzburg" darin erneut nachverlinkt.
 
 ### Entfernt
 - MooTools-basierte Tooltips (`Tips`); Tooltip-Texte werden nun als natives

@@ -73,6 +73,17 @@ class AutolinkListener
             return $buffer;
         }
 
+        // Process longer terms first so a more specific phrase wins over a shorter
+        // term it contains (e.g. "Pfadfinderhaus Salzburg" before "Salzburg"): once
+        // the phrase is linked, the contained term sits inside an <a> and is no
+        // longer matched. This makes overlap resolution independent of the manual
+        // sort order. usort is stable (PHP 8.0+), so equal-length terms keep their
+        // configured "sorting" order.
+        usort(
+            $keywords,
+            static fn (array $a, array $b): int => mb_strlen((string) $b['tag']) <=> mb_strlen((string) $a['tag']),
+        );
+
         // Lazily load the bundled simple_html_dom parser (global functions/classes).
         if (!\function_exists('str_get_html')) {
             \defined('MAX_FILE_SIZE') || \define('MAX_FILE_SIZE', self::PARSER_MAX_FILE_SIZE);
