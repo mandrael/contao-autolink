@@ -16,6 +16,10 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
   und mit korrigierten `text`-Selektoren; byte-identisch zum Upstream-Release.
 - Parser-Größenlimit (`MAX_FILE_SIZE`) aus dem Listener auf 4 MB angehoben — große
   Seiten werden zuverlässig verlinkt (der Upstream-Default von 600 KB übersprang sie still).
+- Performance: Keywords, die auf einer Seite gar nicht vorkommen, werden vor dem
+  teuren HTML-Parsing übersprungen (Unicode-`mb_stripos`-Vorfilter). Bei vielen
+  konfigurierten Begriffen pro Seite (z. B. Kursseiten) deutlich schneller
+  (Beispiel: 60 nicht vorkommende Begriffe ~175 ms → ~3 ms).
 
 ### Entfernt
 - MooTools-basierte Tooltips (`Tips`); Tooltip-Texte werden nun als natives

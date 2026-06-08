@@ -115,6 +115,20 @@ class AutolinkListener
                 }
             }
 
+            // Cheap pre-filter: if the literal term does not occur in the current
+            // buffer at all, no match is possible — skip the expensive parse/serialize.
+            // mb_stripos (Unicode, case-insensitive) mirrors the PCRE "iu" matcher, so
+            // Umlaut case differences never cause a false skip; a case-insensitive miss
+            // also rules out a case-sensitive or whole-word match. Regex terms are not
+            // literal, so they are never pre-filtered.
+            if (
+                !$keyword['regex']
+                && '' !== (string) $keyword['tag']
+                && false === mb_stripos($buffer, (string) $keyword['tag'], 0, 'UTF-8')
+            ) {
+                continue;
+            }
+
             $html = str_get_html($buffer);
 
             if (false === $html) {
