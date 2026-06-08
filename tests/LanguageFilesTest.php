@@ -42,15 +42,24 @@ class LanguageFilesTest extends TestCase
         $this->assertNotEmpty($GLOBALS['TL_LANG'], "$lang/$file did not populate \$GLOBALS['TL_LANG']");
     }
 
-    public function testGermanAndEnglishExposeTheSameTlAutolinkKeys(): void
+    /**
+     * @return array<array{string}>
+     */
+    public static function translationLanguageProvider(): array
+    {
+        return [['en'], ['fr']];
+    }
+
+    #[DataProvider('translationLanguageProvider')]
+    public function testTranslationExposesTheSameTlAutolinkKeysAsGerman(string $lang): void
     {
         $de = $this->loadTlAutolink('de');
-        $en = $this->loadTlAutolink('en');
+        $translated = $this->loadTlAutolink($lang);
 
-        $this->assertSame(
+        $this->assertEqualsCanonicalizing(
             array_keys($de),
-            array_keys($en),
-            'The tl_autolink language keys differ between de and en.',
+            array_keys($translated),
+            "The tl_autolink language keys differ between de and {$lang}.",
         );
     }
 
