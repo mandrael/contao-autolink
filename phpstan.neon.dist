@@ -1,0 +1,10 @@
+parameters:
+    level: 5
+    paths:
+        - src
+    excludePaths:
+        # Vendored third-party HTML parser (simplehtmldom 1.9.1, MIT) — not our code.
+        - src/Resources/contrib/simple_html_dom.php
+    scanFiles:
+        # …but scan it for symbols so str_get_html()/simple_html_dom are known.
+        - src/Resources/contrib/simple_html_dom.php

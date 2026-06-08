@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Mandrael\ContaoAutolinkBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/MandraelContaoAutolinkBundle.php'
+            - '../src/ContaoManager/'
+            - '../src/DependencyInjection/'
+            - '../src/Resources/'
+
+    # Hook/callback listeners are resolved through Contao's service locator;
+    # mark them public to match the convention used in the other Mandrael bundles.
+    Mandrael\ContaoAutolinkBundle\EventListener\AutolinkListener:
+        public: true
+
+    # The Locales service is not autowirable by type, so bind it explicitly.
+    # (#[Autowire] would be cleaner but only exists since Symfony 6.1 / Contao 5.)
+    Mandrael\ContaoAutolinkBundle\EventListener\TlAutolinkCallbacksListener:
+        public: true
+        arguments:
+            $locales: '@contao.intl.locales'

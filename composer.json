@@ -1,0 +1,61 @@
+{
+    "name": "mandrael/contao-autolink",
+    "type": "contao-bundle",
+    "description": "Automatic, backend-managed keyword autolinking for Contao via the outputFrontendTemplate hook.",
+    "keywords": ["contao", "autolink", "links", "keywords", "seo"],
+    "homepage": "https://github.com/mandrael/contao-autolink",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Michael Gasperl",
+            "email": "michael@gasperl.at",
+            "homepage": "https://github.com/mandrael",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Andreas Schempp",
+            "homepage": "https://github.com/aschempp",
+            "role": "Original author (the modernised bundle is based on his autolink logic)"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mandrael/contao-autolink/issues",
+        "source": "https://github.com/mandrael/contao-autolink"
+    },
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^4.13 || ^5.3",
+        "doctrine/dbal": "^3.3 || ^4.0",
+        "symfony/config": "^5.4 || ^6.4 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
+        "symfony/http-kernel": "^5.4 || ^6.4 || ^7.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "contao/test-case": "^5.0",
+        "phpunit/phpunit": "^11.5 || ^12.4",
+        "phpstan/phpstan": "^2.0"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mandrael\\ContaoAutolinkBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mandrael\\ContaoAutolinkBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "contao/manager-plugin": true,
+            "contao-components/installer": true
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "Mandrael\\ContaoAutolinkBundle\\ContaoManager\\Plugin"
+    }
+}
