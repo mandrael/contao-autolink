@@ -12,7 +12,7 @@ This is the modernised version: a proper Composer bundle that installs via the
 **Contao Manager** or `composer require` — no more copying folders into
 `system/modules`.
 
-* Compatibility: a single codebase for **Contao 4.13 LTS** and **Contao 5.3+** (incl. 5.4–5.7), **PHP 8.2+**
+* Compatibility: a single codebase for the Contao LTS releases **4.13, 5.3 and 5.7**, **PHP 8.2+**
 * Service-based `outputFrontendTemplate` hook (`#[AsHook]`)
 * Database: **InnoDB / utf8mb4**; schema defined in the DCA (no manual
   `database.sql` import) and unchanged from the legacy table
@@ -96,8 +96,8 @@ publish time window. What changed is the platform, the plumbing, the packaging �
 plus genuine runtime improvements and one deliberate simplification:
 
 **Platform & installation**
-- Runs from a single codebase on **Contao 4.13 LTS** and **Contao 5.3+**
-  (incl. 5.4–5.7); originally TYPOlight / Contao 2–3.
+- Runs from a single codebase on the Contao LTS releases **4.13, 5.3 and 5.7**;
+  originally TYPOlight / Contao 2–3.
 - Installs as a real **Composer bundle via the Contao Manager** instead of
   copying a folder into `system/modules`.
 - **PHP 8.2+** (was PHP 5).

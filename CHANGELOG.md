@@ -42,6 +42,6 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
   Daten bleiben unverändert.
 
 ### Kompatibilität
-- Contao 4.13 LTS, 5.3 und 5.7 — PHP ≥ 8.2.
+- Contao-LTS-Versionen 4.13, 5.3 und 5.7 — PHP ≥ 8.2.
 - Verifiziert auf je einer DDEV-Instanz Contao 4.13/PHP 8.2, 5.3/PHP 8.3 und 5.7/PHP 8.4
   (Bundle lädt, Migration entfernt nur `words`, Hook + Callback registriert, PHPUnit + PHPStan grün).
