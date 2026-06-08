@@ -82,9 +82,9 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
     'palettes' => [
         '__selector__' => ['type', 'cssFilter', 'addLanguage', 'addTip', 'limitPages'],
         'default'      => '{tag_legend},tag,description;{target_legend},type',
-        'internal'     => '{tag_legend},tag,description;{target_legend},type,page,selflink,popup;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,words,cssID,regex;{published_legend},published,start,stop',
-        'external'     => '{tag_legend},tag,description;{target_legend},type,url,popup;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,words,cssID,regex;{published_legend},published,start,stop',
-        'none'         => '{tag_legend},tag,description;{target_legend},type;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,words,cssID,regex;{published_legend},published,start,stop',
+        'internal'     => '{tag_legend},tag,description;{target_legend},type,page,selflink,popup;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,cssID,regex;{published_legend},published,start,stop',
+        'external'     => '{tag_legend},tag,description;{target_legend},type,url,popup;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,cssID,regex;{published_legend},published,start,stop',
+        'none'         => '{tag_legend},tag,description;{target_legend},type;{limit_legend:hide},cssFilter,limitPages;{language_legend:hide},addLanguage;{tips_legend:hide},addTip;{expert_legend:hide},casesensitive,cssID,regex;{published_legend},published,start,stop',
     ],
 
     // Subpalettes
@@ -211,13 +211,6 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
             'exclude'   => true,
             'inputType' => 'checkbox',
             'eval'      => ['tl_class' => 'w50 m12'],
-            'sql'       => "char(1) NOT NULL default ''",
-        ],
-        'words' => [
-            'label'     => &$GLOBALS['TL_LANG']['tl_autolink']['words'],
-            'exclude'   => true,
-            'inputType' => 'checkbox',
-            'eval'      => ['tl_class' => 'w50'],
             'sql'       => "char(1) NOT NULL default ''",
         ],
         'cssFilter' => [

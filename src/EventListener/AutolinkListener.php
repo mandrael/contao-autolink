@@ -154,14 +154,15 @@ class AutolinkListener
                 }
             }
 
-            // Build the replacement string. With "words" enabled, group 1 and 3 are
-            // the surrounding word boundaries that must be preserved, group 2 is the
-            // matched term; otherwise group 1 is the matched term.
-            $replacement = '';
-            $ref = '$1';
-
-            if ($keyword['words']) {
-                $replacement .= '$1';
+            // Literal terms always match whole-word: group 1 and 3 are the
+            // surrounding word boundaries to preserve, group 2 is the matched term.
+            // Regex terms are used verbatim (the author controls their own
+            // boundaries), so group 1 is the term.
+            if ($keyword['regex']) {
+                $replacement = '';
+                $ref = '$1';
+            } else {
+                $replacement = '$1';
                 $ref = '$2';
             }
 
@@ -197,7 +198,7 @@ class AutolinkListener
                     break;
             }
 
-            if ($keyword['words']) {
+            if (!$keyword['regex']) {
                 $replacement .= '$3';
             }
 
@@ -255,11 +256,11 @@ class AutolinkListener
 
         $query = $keyword['regex'] ? $keyword['tag'] : preg_quote((string) $keyword['tag']);
 
-        $pattern = '@'
-            .($keyword['words'] ? '(\A|[^A-Za-z0-9]{1})' : '')
-            .'('.str_replace('@', '\@', $query).')'
-            .($keyword['words'] ? '([^A-Za-z0-9]{1}|\Z)' : '')
-            .'@'.$modifier;
+        // Literal terms are wrapped in word boundaries (whole-word match); regex
+        // terms are used as written.
+        $pattern = $keyword['regex']
+            ? '@('.str_replace('@', '\@', $query).')@'.$modifier
+            : '@(\A|[^A-Za-z0-9]{1})('.str_replace('@', '\@', $query).')([^A-Za-z0-9]{1}|\Z)@'.$modifier;
 
         $text->innertext = preg_replace($pattern, $replacement, $text->innertext);
     }

@@ -18,7 +18,6 @@ $GLOBALS['TL_LANG']['tl_autolink']['page']				= array('Zielseite', 'Bitte wähle
 $GLOBALS['TL_LANG']['tl_autolink']['url']				= array('URL', 'Bitte geben Sie die vollständige URL inklusive http:// ein.');
 $GLOBALS['TL_LANG']['tl_autolink']['popup']				= array('In neuem Fester öffnen', 'Klicken Sie hier wenn der Link in einem neuen Fester geöffnet werden soll.');
 $GLOBALS['TL_LANG']['tl_autolink']['casesensitive']		= array('Groß-/Kleinschreibung beachten', 'Klicken Sie hier an, wenn die Gross-/Kleinschreibung beim Suchbegriff beachtet werden soll.');
-$GLOBALS['TL_LANG']['tl_autolink']['words']				= array('Vollständige Wörter', 'Klicken Sie hier wenn bei der Suche nur vollständige Wörter getroffen werden sollen. Andernfalls können auch Wortteile verlinkt werden.');
 $GLOBALS['TL_LANG']['tl_autolink']['regex']				= array('Reguläre Ausdrücke verwenden', 'Klicken Sie hier an, wenn für den Suchbegriff Reguläre Ausdrücke zugelassen sind. Weitere Information finden Sie unter <a href="http://php.net/preg_replace" onclick="window.open(this.href); return false">http://php.net/preg_replace</a>.');
 $GLOBALS['TL_LANG']['tl_autolink']['selflink']			= array('Auf Zielseite anwenden', 'Klicken Sie hier an, wenn der Suchbegriff auch auf seiner eigenen Zielseite verlinkt werden soll.');
 $GLOBALS['TL_LANG']['tl_autolink']['cssFilter']			= array('Auswahl mittels CSS eingrenzen', 'Sie können die Suche auf gewisse Teile der Seite eingrenzen, indem Sie CSS-Argumente benutzen.');

@@ -18,7 +18,6 @@ $GLOBALS['TL_LANG']['tl_autolink']['page']				= array('Page', 'Please select the
 $GLOBALS['TL_LANG']['tl_autolink']['url']				= array('URL', 'Please enter the complete URL starting with http://.');
 $GLOBALS['TL_LANG']['tl_autolink']['popup']				= array('Open in new window', 'Please check here if the link should open in a new window.');
 $GLOBALS['TL_LANG']['tl_autolink']['casesensitive']		= array('Case sensitive', 'Please check here if your search tag is case sensitive.');
-$GLOBALS['TL_LANG']['tl_autolink']['words']				= array('Match words', 'Please check here if you want to match only full words and not parts of a word.');
 $GLOBALS['TL_LANG']['tl_autolink']['regex']				= array('Use regular expressions', 'Please check here if you want to enable regular expressions for the search tag. For more information about regular expressions, please see <a href="http://php.net/preg_replace" onclick="window.open(this.href); return false">http://php.net/preg_replace</a>.');
 $GLOBALS['TL_LANG']['tl_autolink']['selflink']			= array('Apply on target page', 'Please check here if the search tag should also be replaced on its target page.');
 $GLOBALS['TL_LANG']['tl_autolink']['cssFilter']			= array('Limit selection using CSS', 'You can limit the search to certain parts of the page by using CSS selectors.');

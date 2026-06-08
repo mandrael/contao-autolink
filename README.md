@@ -42,11 +42,15 @@ Im Backend **Inhalte → Autolink** öffnen, einen Eintrag anlegen, den Suchbegr
 eingeben, die Link-Art (intern / extern / keine) und das Ziel wählen und
 veröffentlichen. Der Begriff wird dann im Frontend automatisch verlinkt.
 
-Pro Eintrag konfigurierbar: ganzes Wort vs. Teiltreffer, Groß-/Kleinschreibung,
-reguläre Ausdrücke, ein CSS-Selektor zur Eingrenzung des Suchbereichs, eine Sprache
-(`lang`-Attribut), ein Tooltip (als natives `title`-Attribut gerendert),
-Seitenbeschränkung (inkl. Unterseiten), eine eigene CSS-ID/-Klasse, ein Popup-Link,
-Selbstverlinkung und ein Veröffentlichungs-Zeitfenster.
+Gesucht wird immer **wortgenau**: ein Begriff wird nur als vollständiges Wort bzw.
+vollständige Phrase verlinkt, nie innerhalb eines größeren Wortes (z. B. wird
+„Salzburg" nicht in „Salzburger" verlinkt).
+
+Pro Eintrag konfigurierbar: Groß-/Kleinschreibung, reguläre Ausdrücke, ein
+CSS-Selektor zur Eingrenzung des Suchbereichs, eine Sprache (`lang`-Attribut), ein
+Tooltip (als natives `title`-Attribut gerendert), Seitenbeschränkung (inkl.
+Unterseiten), eine eigene CSS-ID/-Klasse, ein Popup-Link, Selbstverlinkung und ein
+Veröffentlichungs-Zeitfenster.
 
 ## Umstieg von der Legacy-Erweiterung
 
@@ -84,13 +88,11 @@ Attribution und Historie referenziert, nicht als Abhängigkeit eingebunden.
 
 Der Backend-Funktionsumfang und das `tl_autolink`-Schema sind **von Schempps
 Original geerbt**, das bereits bemerkenswert vollständig war: Suchbegriff → interner
-/ externer / kein Link, ganzes Wort vs. Teiltreffer, Groß-/Kleinschreibung, reguläre
+/ externer / kein Link, wortgenaue Suche, Groß-/Kleinschreibung, reguläre
 Ausdrücke, CSS-Selektor-Eingrenzung, `lang`-Attribut, Tooltip, Seiten-/Unterseiten-
 Beschränkung, eigene CSS-ID/-Klasse, Popup-Links, Selbstverlinkung und
-Veröffentlichungs-Zeitfenster. Es kamen **keine Backend-Felder hinzu**, das
-Tabellen-Schema ist unverändert – bestehende Daten laufen also weiter. Geändert
-haben sich Plattform, Unterbau und Verpackung – plus zwei echte Laufzeit-
-Verbesserungen:
+Veröffentlichungs-Zeitfenster. Geändert haben sich Plattform, Unterbau und
+Verpackung – plus echte Laufzeit-Verbesserungen und eine bewusste Vereinfachung:
 
 **Plattform & Installation**
 - Läuft auf **Contao 4.13, 5.3 und 5.7** (ursprünglich TYPOlight / Contao 2–3).
@@ -131,11 +133,16 @@ Verbesserungen:
 **Verhalten**
 - Tooltips werden als natives **`title`-Attribut** gerendert; die alten
   MooTools-„Tips"-Assets (`tips.css`, `bubble.png`) entfallen.
+- **Der Teilstring-Modus wurde entfernt; gesucht wird immer wortgenau.** Der alte
+  Teilstring-Modus überverlinkte (er traf z. B. „Salzburg" innerhalb von
+  „Salzburger") und wird für phrasenbasierte Verlinkung nicht gebraucht.
+  Regex-Einträge sind nicht betroffen (sie werden exakt wie geschrieben gematcht).
+  **Schema-Hinweis:** Die nun ungenutzte Spalte `tl_autolink.words` wird entfernt –
+  die einzige bewusste Schema-Änderung; der Rest der Tabelle bleibt unverändert.
 
 **Qualität**
 - Test-Suite + GitHub-Actions-CI und PHPStan-Analyse; verifiziert auf
-  Contao 4.13, 5.3 und 5.7 (Backend-Modul, Migration ohne Schema-Diff,
-  Frontend-Verlinkung).
+  Contao 4.13, 5.3 und 5.7 (Backend-Modul, Migration, Frontend-Verlinkung).
 
 ## Credits
 

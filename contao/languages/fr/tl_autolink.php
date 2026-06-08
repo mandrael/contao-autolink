@@ -21,7 +21,6 @@ $GLOBALS['TL_LANG']['tl_autolink']['page']['1'] = "Sélectionner une page cible.
 $GLOBALS['TL_LANG']['tl_autolink']['url']['0'] = "URL";
 $GLOBALS['TL_LANG']['tl_autolink']['popup']['0'] = "Ouvrir le lien dans une nouvelle fenêtre";
 $GLOBALS['TL_LANG']['tl_autolink']['casesensitive']['0'] = "Sensible à la casse";
-$GLOBALS['TL_LANG']['tl_autolink']['words']['0'] = "Recherche exacte";
 $GLOBALS['TL_LANG']['tl_autolink']['regex']['0'] = "Utiliser les expressions régulières";
 $GLOBALS['TL_LANG']['tl_autolink']['selflink']['0'] = "Appliquer sur la page cible";
 $GLOBALS['TL_LANG']['tl_autolink']['cssFilter']['0'] = "Limite la sélection en utilisant les CSS";

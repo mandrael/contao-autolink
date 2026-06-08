@@ -11,7 +11,7 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
   Contao 2/3-Stil) zu einem modernen, Contao-Manager-installierbaren Composer-Bundle.
 - Frontend-Hook `outputFrontendTemplate` als service-basierter `#[AsHook]`-Listener.
 - DCA-Callbacks/Optionen modernisiert; das DB-Schema von `tl_autolink` bleibt
-  unverändert (kein Migrations-Diff für bestehende Installationen).
+  — bis auf die entfernte Spalte `words` (siehe „Entfernt") — unverändert.
 - HTML-Parser von simplehtmldom 1.11 (2008) auf 1.9.1 (2019) angehoben — PHP-8-fest
   und mit korrigierten `text`-Selektoren; byte-identisch zum Upstream-Release.
 - Parser-Größenlimit (`MAX_FILE_SIZE`) aus dem Listener auf 4 MB angehoben — große
@@ -24,8 +24,20 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 ### Entfernt
 - MooTools-basierte Tooltips (`Tips`); Tooltip-Texte werden nun als natives
   `title`-Attribut gerendert.
+- **Teilstring-Modus („Vollständige Wörter" / `words`) inklusive der gleichnamigen
+  Tabellenspalte.** Begründung: Der abschaltbare Wortgrenzen-Modus erlaubte
+  Teiltreffer *innerhalb* anderer Wörter (z. B. „Salzburg" in „Salzburger") — eine
+  Überverlinkungs-Gefahr, die für phrasenbasierte Verlinkung nie gebraucht wird.
+  Gesucht wird jetzt **immer wortgenau**; Regex-Einträge bleiben unberührt (werden
+  exakt wie geschrieben gematcht). Da das Feld ohne Checkbox ohnehin nicht mehr
+  bearbeitbar wäre, wird auch die Spalte `tl_autolink.words` entfernt. Die Migration
+  schlägt dafür `ALTER TABLE tl_autolink DROP words` vor; da es eine destruktive
+  Änderung ist, wird sie erst nach Bestätigung im **Contao Manager** bzw. mit
+  **`contao:migrate --with-deletes`** ausgeführt (einfaches `contao:migrate` lässt
+  sie aus). Das ist die einzige bewusste Schema-Änderung; alle übrigen Spalten und
+  Daten bleiben unverändert.
 
 ### Kompatibilität
 - Contao 4.13 LTS, 5.3 und 5.7 — PHP ≥ 8.2.
 - Verifiziert auf je einer DDEV-Instanz Contao 4.13/PHP 8.2, 5.3/PHP 8.3 und 5.7/PHP 8.4
-  (Bundle lädt, Migration ohne Schema-Diff, Hook + Callback registriert, PHPUnit + PHPStan grün).
+  (Bundle lädt, Migration entfernt nur `words`, Hook + Callback registriert, PHPUnit + PHPStan grün).

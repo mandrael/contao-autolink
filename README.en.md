@@ -42,11 +42,13 @@ Open **Content → Autolink** in the back end, create an entry, enter the search
 term, choose the link type (internal / external / none) and target, and publish
 it. The term is then linked automatically in the front end.
 
-Per entry you can configure: whole-word vs. partial matching, case sensitivity,
-regular expressions, a CSS selector to restrict the search area, a language
-(`lang` attribute), a tooltip (rendered as a native `title` attribute), page
-restrictions (incl. subpages), a custom CSS id/class, a popup link, self-linking
-and a publish time window.
+Matching is always **whole-word**: a term only links as a complete word/phrase,
+never inside a larger word (so “Salzburg” is not linked inside “Salzburger”).
+
+Per entry you can configure: case sensitivity, regular expressions, a CSS selector
+to restrict the search area, a language (`lang` attribute), a tooltip (rendered as
+a native `title` attribute), page restrictions (incl. subpages), a custom CSS
+id/class, a popup link, self-linking and a publish time window.
 
 ## Upgrading from the legacy extension
 
@@ -83,12 +85,11 @@ so it is referenced for attribution and history rather than used as a dependency
 
 The back end feature set and the `tl_autolink` schema are **inherited from
 Schempp's original**, which was already remarkably complete: search term →
-internal / external / no link, whole-word vs. partial matching, case sensitivity,
-regular expressions, CSS-selector-restricted search, `lang` attribute, tooltip,
+internal / external / no link, whole-word matching, case sensitivity, regular
+expressions, CSS-selector-restricted search, `lang` attribute, tooltip,
 page/subpage restrictions, custom CSS id/class, popup links, self-linking and a
-publish time window. No back end fields were added and the table schema is
-unchanged, so existing data keeps working. What changed is the platform, the
-plumbing, the packaging — plus two genuine runtime improvements:
+publish time window. What changed is the platform, the plumbing, the packaging —
+plus genuine runtime improvements and one deliberate simplification:
 
 **Platform & installation**
 - Runs on **Contao 4.13, 5.3 and 5.7** (originally TYPOlight / Contao 2–3).
@@ -127,11 +128,16 @@ plumbing, the packaging — plus two genuine runtime improvements:
 **Behaviour**
 - Tooltips render as a native **`title` attribute**; the old MooTools "Tips"
   assets (`tips.css`, `bubble.png`) are gone.
+- **The “match partial words” mode was removed; matching is always whole-word.**
+  The old substring mode over-linked (it linked e.g. “Salzburg” inside
+  “Salzburger”) and is not needed for phrase-based linking. Regular-expression
+  entries are unaffected (they are matched exactly as written).
+  **Schema note:** the now-unused `tl_autolink.words` column is dropped — this is
+  the one intentional schema change; the rest of the table is unchanged.
 
 **Quality**
 - Test suite + GitHub Actions CI and PHPStan static analysis; verified on
-  Contao 4.13, 5.3 and 5.7 (back end module, migration without schema diff,
-  front end linking).
+  Contao 4.13, 5.3 and 5.7 (back end module, migration, front end linking).
 
 ## Credits
 
