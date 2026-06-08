@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of mandrael/contao-autolink.
+ *
+ * (c) Michael Gasperl
+ *
+ * @license LGPL-3.0-or-later
+ */
+
 namespace Mandrael\ContaoAutolinkBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;

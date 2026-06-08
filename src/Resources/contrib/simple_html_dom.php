@@ -18,7 +18,7 @@
  *   Vadim Voituk
  *   Antcs
  *
- * Version $Rev$
+ * Version Rev. 1.9.1 (291)
  */
 
 define('HDOM_TYPE_ELEMENT', 1);

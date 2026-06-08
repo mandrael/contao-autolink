@@ -1,8 +1,12 @@
 <?php
 
 /*
- * This file is part of mandrael/contao-autolink (based on the original
- * Autolink for Contao by Andreas Schempp).
+ * This file is part of mandrael/contao-autolink.
+ *
+ * (c) Michael Gasperl
+ *
+ * Based on the original "Autolink" extension for Contao by Andreas Schempp,
+ * originally distributed as part of Contao Open Source CMS (c) Leo Feyer.
  *
  * @license LGPL-3.0-or-later
  */
