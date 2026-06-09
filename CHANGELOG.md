@@ -13,11 +13,11 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 - DCA-Callbacks/Optionen modernisiert; das DB-Schema von `tl_autolink` bleibt
   — bis auf die entfernte Spalte `words` (siehe „Entfernt") — unverändert.
 - HTML-Parser von simplehtmldom 1.11 (2008) auf 1.9.1 (2019) angehoben — PHP-8-fest
-  und mit korrigierten `text`-Selektoren; byte-identisch zum Upstream-Release.
+  und mit korrigierten `text`-Selektoren; byte-identisch zum Original-Release.
 - Parser-Größenlimit (`MAX_FILE_SIZE`) aus dem Listener auf 4 MB angehoben — große
-  Seiten werden zuverlässig verlinkt (der Upstream-Default von 600 KB übersprang sie still).
+  Seiten werden zuverlässig verlinkt (der Standardwert von 600 KB übersprang sie still).
 - Performance: Keywords, die auf einer Seite gar nicht vorkommen, werden vor dem
-  teuren HTML-Parsing übersprungen (Unicode-`mb_stripos`-Vorfilter). Bei vielen
+  rechenintensiven HTML-Parsing übersprungen (Unicode-`mb_stripos`-Vorfilter). Bei vielen
   konfigurierten Begriffen pro Seite (z. B. Kursseiten) deutlich schneller
   (Beispiel: 60 nicht vorkommende Begriffe ~175 ms → ~3 ms).
 - Überlappende Begriffe werden deterministisch aufgelöst: der längere Begriff

@@ -1,4 +1,4 @@
-<img align="right" width="96" src="logo.svg" alt="Autolink logo">
+<img align="right" width="100" src="logo.svg" alt="Autolink logo">
 
 [Deutsch](README.md) | **English**
 
@@ -10,7 +10,7 @@ configured terms and creates internal links (to a Contao page), external links
 (to a URL) or a plain styled `<span>`. The search can be restricted to the pages
 you need.
 
-This is the modernised version: a proper Composer bundle that installs via the
+This is the modernised version: a Composer bundle that installs via the
 **Contao Manager** or `composer require` — no more copying folders into
 `system/modules`.
 
@@ -90,17 +90,17 @@ Contao. The original repository is archived and no longer runs on current Contao
 so it is referenced for attribution and history rather than used as a dependency.
 
 The back end feature set and the `tl_autolink` schema are **inherited from
-Schempp's original**, which was already remarkably complete: search term →
+Schempp's original**, which was already comprehensive: search term →
 internal / external / no link, whole-word matching, case sensitivity, regular
 expressions, CSS-selector-restricted search, `lang` attribute, tooltip,
 page/subpage restrictions, custom CSS id/class, popup links, self-linking and a
 publish time window. What changed is the platform, the plumbing, the packaging —
-plus genuine runtime improvements and one deliberate simplification:
+plus runtime improvements and one deliberate simplification:
 
 **Platform & installation**
 - Runs from a single codebase on the Contao LTS releases **4.13, 5.3 and 5.7**;
   originally TYPOlight / Contao 2–3.
-- Installs as a real **Composer bundle via the Contao Manager** instead of
+- Installs as a **Composer bundle via the Contao Manager** instead of
   copying a folder into `system/modules`.
 - **PHP 8.2+** (was PHP 5).
 
@@ -170,6 +170,6 @@ An interesting detail on why it just keeps working: it stays compatible from
 PHP 5.6 through 8.4+ precisely because it is deliberately minimal — no type
 declarations (nothing for newer PHP versions to deprecate), magic `__get`/`__set`
 instead of dynamic properties (so it never trips the PHP 8.2 deprecation), and only
-the language's rock-stable core (arrays, strings, PCRE), avoiding every construct
+the language's stable core (arrays, strings, PCRE), avoiding every construct
 PHP has since removed. That same conservatism is also why it is robust rather than
 fast.

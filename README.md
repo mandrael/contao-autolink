@@ -1,4 +1,4 @@
-<img align="right" width="96" src="logo.svg" alt="Autolink-Logo">
+<img align="right" width="100" src="logo.svg" alt="Autolink-Logo">
 
 **Deutsch** | [English](README.en.md)
 
@@ -10,7 +10,7 @@ Seitenausgabe nach den konfigurierten Begriffen und erzeugt interne Links (auf
 eine Contao-Seite), externe Links (auf eine URL) oder ein einfaches, gestyltes
 `<span>`. Die Suche lässt sich auf bestimmte Seiten beschränken.
 
-Dies ist die modernisierte Fassung: ein vollwertiges Composer-Bundle, das sich über
+Dies ist die modernisierte Fassung: ein Composer-Bundle, das sich über
 den **Contao Manager** oder `composer require` installieren lässt – kein Kopieren
 von Ordnern nach `system/modules` mehr.
 
@@ -93,17 +93,17 @@ ist archiviert und läuft auf aktuellem Contao nicht mehr; es wird daher zur
 Attribution und Historie referenziert, nicht als Abhängigkeit eingebunden.
 
 Der Backend-Funktionsumfang und das `tl_autolink`-Schema sind **von Schempps
-Original geerbt**, das bereits bemerkenswert vollständig war: Suchbegriff → interner
+Original geerbt**, das bereits umfangreich war: Suchbegriff → interner
 / externer / kein Link, wortgenaue Suche, Groß-/Kleinschreibung, reguläre
 Ausdrücke, CSS-Selektor-Eingrenzung, `lang`-Attribut, Tooltip, Seiten-/Unterseiten-
 Beschränkung, eigene CSS-ID/-Klasse, Popup-Links, Selbstverlinkung und
 Veröffentlichungs-Zeitfenster. Geändert haben sich Plattform, Unterbau und
-Verpackung – plus echte Laufzeit-Verbesserungen und eine bewusste Vereinfachung:
+Verpackung – plus Laufzeit-Verbesserungen und eine bewusste Vereinfachung:
 
 **Plattform & Installation**
 - Läuft mit einer einzigen Codebasis auf den Contao-LTS-Versionen **4.13, 5.3 und 5.7**;
   ursprünglich TYPOlight / Contao 2–3.
-- Installiert als echtes **Composer-Bundle über den Contao Manager** statt durch
+- Installiert als **Composer-Bundle über den Contao Manager** statt durch
   Kopieren eines Ordners nach `system/modules`.
 - **PHP 8.2+** (vorher PHP 5).
 
@@ -120,10 +120,10 @@ Verpackung – plus echte Laufzeit-Verbesserungen und eine bewusste Vereinfachun
 
 **Performance & Robustheit**
 - **Große Seiten werden jetzt zuverlässig verlinkt:** Das Eingabe-Limit des Parsers
-  wurde vom Upstream-Default 600 KB auf 4 MB angehoben. Oberhalb des alten Limits
+  wurde vom Standardwert (600 KB) auf 4 MB angehoben. Oberhalb des alten Limits
   wurde die Verlinkung für die gesamte Seite still übersprungen.
 - **Schneller bei vielen Begriffen pro Seite:** Begriffe, die auf einer Seite nicht
-  vorkommen, werden vor dem teuren HTML-Parsing übersprungen (Unicode-fähiger
+  vorkommen, werden vor dem rechenintensiven HTML-Parsing übersprungen (Unicode-fähiger
   `mb_stripos`-Vorfilter). Auf einer Beispielseite mit 60 konfigurierten, aber nicht
   vorkommenden Begriffen sank die Listener-Last von ~175 ms auf ~3 ms – relevant für
   Seiten mit vielen Einträgen (z. B. Kursseiten).
@@ -134,8 +134,8 @@ Verpackung – plus echte Laufzeit-Verbesserungen und eine bewusste Vereinfachun
 - **Französische** Übersetzung ergänzt (das Original lieferte nur Deutsch und
   Englisch).
 - Gebündelter HTML-Parser auf **simplehtmldom 1.9.1** angehoben – die letzte
-  gepflegte 1.x-Release, die den vom Linker genutzten `text`-Selektor korrigiert –
-  byte-identisch zum Upstream-Release gehalten.
+  gepflegte 1.x-Version, die den von der Verlinkung genutzten `text`-Selektor korrigiert –
+  byte-identisch zum Original-Release gehalten.
 
 **Verhalten**
 - Tooltips werden als natives **`title`-Attribut** gerendert; die alten
@@ -170,12 +170,12 @@ dieses Bundle abgeleitet ist. Der gebündelte HTML-Parser
 
 Das Frontend-Matching nutzt
 [simple_html_dom 1.9.1](https://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/)
-(MIT), byte-identisch zum Upstream-Release gebündelt.
+(MIT), byte-identisch zum Original-Release gebündelt.
 
 Ein interessantes Detail, warum er einfach weiterläuft: Er bleibt von PHP 5.6 bis
 8.4+ kompatibel, gerade weil er bewusst minimal ist – keine Typ-Deklarationen
-(nichts, was neuere PHP-Versionen deprecaten könnten), Magic-Methods `__get`/`__set`
-statt dynamischer Properties (er löst also nie die PHP-8.2-Deprecation aus) und nur
-der felsenfeste Kern der Sprache (Arrays, Strings, PCRE), ohne jedes von PHP
+(nichts, was neuere PHP-Versionen als veraltet markieren könnten), magische Methoden
+`__get`/`__set` statt dynamischer Eigenschaften (er löst also nie die PHP-8.2-Abkündigung
+aus) und nur der stabile Kern der Sprache (Arrays, Strings, PCRE), ohne jedes von PHP
 entfernte Konstrukt. Dieselbe Zurückhaltung ist auch der Grund, warum er robust und
 nicht schnell ist.
