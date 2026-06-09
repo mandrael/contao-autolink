@@ -1,4 +1,4 @@
-<p align="center"><img src="logo.svg" width="96" alt="Autolink-Logo"></p>
+<img align="right" width="96" src="logo.svg" alt="Autolink-Logo">
 
 **Deutsch** | [English](README.en.md)
 
