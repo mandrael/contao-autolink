@@ -16,5 +16,5 @@
 // Mandrael\ContaoAutolinkBundle\EventListener\AutolinkListener.
 $GLOBALS['BE_MOD']['content']['autolink'] = [
     'tables' => ['tl_autolink'],
-    'icon'   => 'bundles/mandraelcontaoautolink/wand.svg',
+    'icon'   => 'bundles/mandraelcontaoautolink/autolink.svg',
 ];

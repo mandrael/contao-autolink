@@ -16,7 +16,7 @@ von Ordnern nach `system/modules` mehr.
 * Service-basierter `outputFrontendTemplate`-Hook (`#[AsHook]`)
 * Datenbank: **InnoDB / utf8mb4**; Schema im DCA definiert (kein manueller
   `database.sql`-Import) und unverändert gegenüber der Legacy-Tabelle
-* **SVG**-Zauberstab-Icon statt des alten GIF
+* **SVG**-Icon statt des alten GIF
 
 ## Installation
 
@@ -128,7 +128,7 @@ Verpackung – plus echte Laufzeit-Verbesserungen und eine bewusste Vereinfachun
 
 **Daten & Assets**
 - Tabelle auf **InnoDB / utf8mb4** umgestellt (vorher MyISAM / utf8).
-- **SVG**-Zauberstab-Icon statt des alten GIF.
+- **SVG**-Icon statt des alten GIF.
 - **Französische** Übersetzung ergänzt (das Original lieferte nur Deutsch und
   Englisch).
 - Gebündelter HTML-Parser auf **simplehtmldom 1.9.1** angehoben – die letzte

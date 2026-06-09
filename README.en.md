@@ -16,7 +16,7 @@ This is the modernised version: a proper Composer bundle that installs via the
 * Service-based `outputFrontendTemplate` hook (`#[AsHook]`)
 * Database: **InnoDB / utf8mb4**; schema defined in the DCA (no manual
   `database.sql` import) and unchanged from the legacy table
-* **SVG** wand icon instead of the old GIF
+* **SVG** icon instead of the old GIF
 
 ## Installation
 
@@ -124,7 +124,7 @@ plus genuine runtime improvements and one deliberate simplification:
 
 **Data & assets**
 - Table converted to **InnoDB / utf8mb4** (was MyISAM / utf8).
-- **SVG** wand icon instead of the old GIF.
+- **SVG** icon instead of the old GIF.
 - **French** translation added (the original shipped only German and English).
 - Bundled HTML parser raised to **simplehtmldom 1.9.1** — the last maintained
   1.x release, which fixes the `text` selector the linker relies on — kept
