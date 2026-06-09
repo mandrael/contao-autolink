@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.svg" width="96" alt="Autolink logo"></p>
+
 [Deutsch](README.md) | **English**
 
 # Autolink – Automatic link creation for Contao
