@@ -70,6 +70,12 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
                 'icon'       => 'delete.svg',
                 'attributes' => 'onclick="if (!confirm(\''.($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? '').'\')) return false; Backend.getScrollOffset();"',
             ],
+            'toggle' => [
+                'label'        => &$GLOBALS['TL_LANG']['tl_autolink']['toggle'],
+                'href'         => 'act=toggle&amp;field=published',
+                'icon'         => 'visible.svg',
+                'showInHeader' => true,
+            ],
             'show' => [
                 'label' => &$GLOBALS['TL_LANG']['tl_autolink']['show'],
                 'href'  => 'act=show',
@@ -258,9 +264,11 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
         'published' => [
             'label'     => &$GLOBALS['TL_LANG']['tl_autolink']['published'],
             'exclude'   => true,
+            'toggle'    => true,
             'filter'    => true,
+            'default'   => '1',
             'inputType' => 'checkbox',
-            'eval'      => ['doNotCopy' => true],
+            'eval'      => ['isBoolean' => true, 'doNotCopy' => true],
             'sql'       => "char(1) NOT NULL default ''",
         ],
         'start' => [

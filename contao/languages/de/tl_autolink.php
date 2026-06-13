@@ -53,6 +53,7 @@ $GLOBALS['TL_LANG']['tl_autolink']['copy']				= array('Link duplizieren', 'Link 
 $GLOBALS['TL_LANG']['tl_autolink']['cut']				= array('Link verschieben', 'Link ID %s verschieben');
 $GLOBALS['TL_LANG']['tl_autolink']['delete']			= array('Link löschen', 'Link ID %s löschen');
 $GLOBALS['TL_LANG']['tl_autolink']['show']				= array('Linkdetails', 'Die Details des Link ID %s anzeigen');
+$GLOBALS['TL_LANG']['tl_autolink']['toggle']			= array('Link ein-/ausblenden', 'Link ID %s ein-/ausblenden');
 
 
 /**

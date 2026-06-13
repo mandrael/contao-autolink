@@ -42,7 +42,9 @@ the `tl_autolink` table is created, and install the bundle assets
 
 Open **Content → Autolink** in the back end, create an entry, enter the search
 term, choose the link type (internal / external / none) and target, and publish
-it. The term is then linked automatically in the front end.
+it. The term is then linked automatically in the front end. In the overview, each
+entry can be shown or hidden directly via the visibility (eye) icon; new entries are
+shown by default.
 
 Matching is always **whole-word**: a term only links as a complete word/phrase,
 never inside a larger word (so “Salzburg” is not linked inside “Salzburger”).

@@ -6,6 +6,11 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ## [0.5.0] – 2026-06-08
 
+### Hinzugefügt
+- Sichtbarkeits-Toggle in der Listenansicht: Einträge lassen sich direkt über das
+  Auge-Symbol ein- und ausblenden (Contao-Standard, funktioniert mit Contao 4.13
+  und 5.x in einer Codebasis). Neue Einträge sind standardmäßig eingeblendet.
+
 ### Geändert
 - Vollständiger Umbau von einer Legacy-Modulerweiterung (`system/modules/autolink`,
   Contao 2/3-Stil) zu einem modernen, Contao-Manager-installierbaren Composer-Bundle.

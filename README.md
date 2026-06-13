@@ -42,7 +42,9 @@ damit die Tabelle `tl_autolink` angelegt wird, und die Bundle-Assets installiere
 
 Im Backend **Inhalte → Autolink** öffnen, einen Eintrag anlegen, den Suchbegriff
 eingeben, die Link-Art (intern / extern / keine) und das Ziel wählen und
-veröffentlichen. Der Begriff wird dann im Frontend automatisch verlinkt.
+veröffentlichen. Der Begriff wird dann im Frontend automatisch verlinkt. In der
+Übersicht lässt sich jeder Eintrag über das Sichtbarkeits-Auge direkt ein- und
+ausblenden; neue Einträge sind standardmäßig eingeblendet.
 
 Gesucht wird immer **wortgenau**: ein Begriff wird nur als vollständiges Wort bzw.
 vollständige Phrase verlinkt, nie innerhalb eines größeren Wortes (z. B. wird

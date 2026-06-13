@@ -53,6 +53,7 @@ $GLOBALS['TL_LANG']['tl_autolink']['copy']				= array('Copy link', 'Copy link ID
 $GLOBALS['TL_LANG']['tl_autolink']['cut']				= array('Move link', 'Move link ID %s');
 $GLOBALS['TL_LANG']['tl_autolink']['delete']			= array('Delete link', 'Delete link ID %s');
 $GLOBALS['TL_LANG']['tl_autolink']['show']				= array('Link details', 'Show details of link ID %s');
+$GLOBALS['TL_LANG']['tl_autolink']['toggle']			= array('Show/hide link', 'Show/hide link ID %s');
 
 
 /**
