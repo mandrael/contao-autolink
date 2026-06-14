@@ -12,8 +12,11 @@ declare(strict_types=1);
 
 namespace Mandrael\ContaoAutolinkBundle\EventListener;
 
+use Contao\Backend;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Intl\Locales;
+use Contao\DataContainer;
+use Contao\Image;
 
 class TlAutolinkCallbacksListener
 {
@@ -33,5 +36,31 @@ class TlAutolinkCallbacksListener
     public function getLanguageOptions(): array
     {
         return $this->locales->getLanguages();
+    }
+
+    /**
+     * Renders the list entry (icon + label) as a link to its editing page, so a
+     * single click opens the edit view instead of having to reach for the edit
+     * operation on the far right. In tree mode (mode 5) Contao only prepends the
+     * leaf icon when no label_callback is set, so the icon is added here; the
+     * callback signature is identical in Contao 4.13 and 5.x.
+     *
+     * @param array<string, mixed> $row
+     */
+    #[AsCallback(table: 'tl_autolink', target: 'list.label.label')]
+    public function renderLabelAsEditLink(array $row, string $label, DataContainer $dc, string $imageAttribute = '', bool $returnImage = false, bool $protected = false, bool $isVisibleRootTrailPage = false): string
+    {
+        $icon = Image::getHtml('iconPLAIN.svg', '', $imageAttribute);
+
+        if ($returnImage) {
+            return $icon;
+        }
+
+        return sprintf(
+            '<a href="%s">%s %s</a>',
+            Backend::addToUrl('act=edit&amp;id='.(int) $row['id']),
+            $icon,
+            $label,
+        );
     }
 }

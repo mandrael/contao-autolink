@@ -10,6 +10,9 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 - Sichtbarkeits-Toggle in der Listenansicht: Einträge lassen sich direkt über das
   Auge-Symbol ein- und ausblenden (Contao-Standard, funktioniert mit Contao 4.13
   und 5.x in einer Codebasis). Neue Einträge sind standardmäßig eingeblendet.
+- Klick auf den Listeneintrag (Icon + Titel) öffnet die Bearbeiten-Ansicht
+  (`label_callback`), statt den Bearbeiten-Stift ganz rechts ansteuern zu müssen
+  — in Contao 4.13 und 5.x.
 
 ### Geändert
 - Vollständiger Umbau von einer Legacy-Modulerweiterung (`system/modules/autolink`,
