@@ -265,15 +265,30 @@ class AutolinkListener
             return;
         }
 
-        $query = $keyword['regex'] ? $keyword['tag'] : preg_quote((string) $keyword['tag']);
-
-        // Literal terms are wrapped in word boundaries (whole-word match); regex
-        // terms are used as written.
-        $pattern = $keyword['regex']
-            ? '@('.str_replace('@', '\@', $query).')@'.$modifier
-            : '@(\A|[^A-Za-z0-9]{1})('.str_replace('@', '\@', $query).')([^A-Za-z0-9]{1}|\Z)@'.$modifier;
+        $pattern = self::buildPattern($keyword, $modifier);
 
         $text->innertext = preg_replace($pattern, $replacement, $text->innertext);
+    }
+
+    /**
+     * Build the PCRE pattern for a single keyword.
+     *
+     * Literal terms are wrapped in word boundaries (whole-word match); regex
+     * terms are used verbatim (the author controls their own boundaries).
+     *
+     * The word-boundary classes use the Unicode properties \p{L} (any letter)
+     * and \p{N} (any number), not the ASCII range [A-Za-z0-9]: under the "u"
+     * modifier the ASCII range treats accented letters and the sharp s
+     * (ä, ö, ü, ß, é, …) as word boundaries, so a term adjacent to one of them
+     * would wrongly match inside a compound word (e.g. "Tor" in "Toröffnung").
+     */
+    private static function buildPattern(array $keyword, string $modifier): string
+    {
+        $query = str_replace('@', '\@', $keyword['regex'] ? (string) $keyword['tag'] : preg_quote((string) $keyword['tag']));
+
+        return $keyword['regex']
+            ? '@('.$query.')@'.$modifier
+            : '@(\A|[^\p{L}\p{N}])('.$query.')([^\p{L}\p{N}]|\Z)@'.$modifier;
     }
 
     /**

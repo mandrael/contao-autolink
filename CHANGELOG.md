@@ -4,6 +4,20 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [0.5.1] – 2026-06-20
+
+### Behoben
+- Wortgrenzen-Erkennung Unicode-fest: Ein Begriff, der direkt an einen Umlaut, an
+  „ß" oder an einen Akzentbuchstaben grenzt, wird nicht mehr fälschlich *innerhalb*
+  eines Kompositums verlinkt (z. B. „Tor" in „Toröffnung", „strasse" in
+  „Großstrasse"). Die Wortgrenzen nutzen jetzt die Unicode-Eigenschaften
+  `\p{L}`/`\p{N}` statt des ASCII-Bereichs `A-Za-z0-9`. Echte ganze Wörter werden
+  unverändert verlinkt; Regex-Einträge sind nicht betroffen.
+
+### Verifiziert
+- PHPUnit und PHPStan grün; ein neuer Unit-Test deckt die Umlaut-, „ß"- und
+  Akzent-Wortgrenzen ab.
+
 ## [0.5.0] – 2026-06-20
 
 ### Hinzugefügt
