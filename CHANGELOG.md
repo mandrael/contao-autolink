@@ -4,7 +4,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
-## [0.5.0] – 2026-06-08
+## [0.5.0] – 2026-06-20
 
 ### Hinzugefügt
 - Sichtbarkeits-Toggle in der Listenansicht: Einträge lassen sich direkt über das
