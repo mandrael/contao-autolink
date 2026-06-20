@@ -11,11 +11,6 @@
             "email": "michael@gasperl.at",
             "homepage": "https://github.com/mandrael",
             "role": "Maintainer"
-        },
-        {
-            "name": "Andreas Schempp",
-            "homepage": "https://github.com/aschempp",
-            "role": "Original author (the modernised bundle is based on his autolink logic)"
         }
     ],
     "support": {
