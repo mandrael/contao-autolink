@@ -58,6 +58,38 @@ class AutolinkMatchingTest extends TestCase
         self::assertSame(1, preg_match($pattern, 'a colour here'));
     }
 
+    public function testTextNodeUnderDomRootDoesNotWarnOnNullGrandparent(): void
+    {
+        require_once __DIR__.'/../../src/Resources/contrib/simple_html_dom.php';
+
+        // A bare text fragment places the text node directly under the DOM root,
+        // so $parent->parent() is null — the case that triggered the WARNING.
+        $dom = str_get_html('Tor');
+
+        $listener = (new \ReflectionClass(AutolinkListener::class))->newInstanceWithoutConstructor();
+        $method = new \ReflectionMethod(AutolinkListener::class, 'processTextNode');
+
+        set_error_handler(static function (int $errno, string $errstr): bool {
+            throw new \RuntimeException($errstr);
+        });
+
+        try {
+            foreach ($dom->find('text') as $text) {
+                $method->invoke(
+                    $listener,
+                    $text,
+                    ['regex' => '', 'tag' => 'Tor', 'addTip' => '', 'type' => 'none'],
+                    '$1<span>$2</span>$3',
+                    'ui',
+                );
+            }
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->addToAssertionCount(1);
+    }
+
     /**
      * @param array{regex: mixed, tag: mixed} $keyword
      */

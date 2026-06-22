@@ -251,15 +251,18 @@ class AutolinkListener
             return;
         }
 
+        // The grandparent can be null when the text node sits directly under the
+        // DOM root (parent === the root node, whose parent() is null) — guard the
+        // chain so reading ->class/->tag never warns on null.
         if (
             \in_array($parent->class, self::PROTECTED_CLASSES, true)
-            || \in_array($parent->parent()->class, self::PROTECTED_CLASSES, true)
+            || \in_array($parent->parent()?->class, self::PROTECTED_CLASSES, true)
         ) {
             return;
         }
 
         if (
-            (\in_array($parent->tag, self::NOLINK_TAGS, true) || \in_array($parent->parent()->tag, self::NOLINK_TAGS, true))
+            (\in_array($parent->tag, self::NOLINK_TAGS, true) || \in_array($parent->parent()?->tag, self::NOLINK_TAGS, true))
             && ($keyword['addTip'] || 'none' !== $keyword['type'])
         ) {
             return;

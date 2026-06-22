@@ -4,6 +4,19 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [0.5.2] – 2026-06-22
+
+### Behoben
+- PHP-WARNING „Attempt to read property … on null" im Frontend-Hook beseitigt:
+  Bei der Prüfung geschützter Eltern-Elemente konnte `$parent->parent()` `null`
+  sein, wenn der Textknoten direkt unter dem DOM-Root liegt. Der Zugriff auf
+  `class`/`tag` ist jetzt null-safe (`?->`). Reine Log-Bereinigung — das
+  Verlinkungsverhalten ändert sich nicht.
+
+### Verifiziert
+- PHPUnit und PHPStan grün; ein neuer Regressionstest deckt den Textknoten direkt
+  unter dem DOM-Root ab.
+
 ## [0.5.1] – 2026-06-20
 
 ### Behoben
