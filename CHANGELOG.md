@@ -4,6 +4,21 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [0.5.3] – 2026-06-23
+
+### Behoben
+- Backend-Modul „Autolink" (`?do=autolink`) warf unter Contao 5 einen Fatal Error
+  `Class "Table" not found`. Die DCA-Konfiguration nutzte die Contao-4-Kurzform
+  `'dataContainer' => 'Table'`. Contao 5 löst diese Kurzform nicht mehr nach
+  `Contao\DC_Table` auf (seit Contao 4.9 als Deprecation angekündigt), sondern
+  instanziiert den Wert direkt als Klassennamen. Jetzt wird der voll qualifizierte
+  Klassenname `\Contao\DC_Table::class` verwendet — kompatibel mit Contao 4.13, 5.3
+  und 5.4+. Das Frontend-Verlinkungsverhalten ist nicht betroffen (der Fehler trat
+  ausschließlich beim Öffnen der Backend-Listenansicht auf).
+
+### Geändert
+- `logo.svg` und die öffentlichen SVG-Assets mit svgo optimiert (interne Asset-Optimierung).
+
 ## [0.5.2] – 2026-06-22
 
 ### Behoben
