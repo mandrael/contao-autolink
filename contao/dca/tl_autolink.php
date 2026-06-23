@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
 
     // Config
     'config' => [
-        'dataContainer'    => 'Table',
+        'dataContainer'    => \Contao\DC_Table::class,
         'enableVersioning' => false,
         'label'            => &$GLOBALS['TL_LANG']['MOD']['autolink'][0],
         'sql'              => [
