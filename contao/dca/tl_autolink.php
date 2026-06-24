@@ -36,7 +36,7 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
         ],
         'label' => [
             'fields' => ['tag', 'description'],
-            'format' => '%s <span style="color:#b3b3b3; padding-left:3px;">[%s]</span>',
+            'format' => '%s <span class="tl_gray" style="padding-left:3px;">[%s]</span>',
         ],
         'global_operations' => [
             'all' => [

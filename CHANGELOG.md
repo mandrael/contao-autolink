@@ -4,6 +4,13 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [Unreleased]
+
+### Behoben
+- **Backend-Dark-Mode:** Das Beschreibungs-Suffix in der Autolink-Liste nutzt die
+  Contao-Klasse `tl_gray` statt einer festen Farbe (`#b3b3b3`) und schaltet im
+  Contao-5-Dark-Mode mit.
+
 ## [0.5.3] – 2026-06-23
 
 ### Behoben
