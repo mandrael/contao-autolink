@@ -13,8 +13,11 @@ services:
 
     # Hook/callback listeners are resolved through Contao's service locator;
     # mark them public to match the convention used in the other Mandrael bundles.
+    # The FOS services are optional (no HTTP cache configured), as in Contao core.
     Mandrael\ContaoAutolinkBundle\EventListener\AutolinkListener:
         public: true
+        arguments:
+            $responseTagger: '@?fos_http_cache.http.symfony_response_tagger'
 
     # The Locales service is not autowirable by type, so bind it explicitly.
     # (#[Autowire] would be cleaner but only exists since Symfony 6.1 / Contao 5.)
@@ -22,3 +25,4 @@ services:
         public: true
         arguments:
             $locales: '@contao.intl.locales'
+            $cacheInvalidator: '@?fos_http_cache.cache_manager'

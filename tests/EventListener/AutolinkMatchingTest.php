@@ -80,7 +80,7 @@ class AutolinkMatchingTest extends TestCase
                     $text,
                     ['regex' => '', 'tag' => 'Tor', 'addTip' => '', 'type' => 'none'],
                     '$1<span>$2</span>$3',
-                    'ui',
+                    self::buildPattern(['regex' => '', 'tag' => 'Tor'], 'ui'),
                 );
             }
         } finally {

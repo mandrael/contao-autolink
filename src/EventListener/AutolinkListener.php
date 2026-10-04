@@ -20,6 +20,9 @@ use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\PageModel;
 use Contao\StringUtil;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception\TableNotFoundException;
+use FOS\HttpCache\ResponseTagger;
+use Psr\Log\LoggerInterface;
 
 /**
  * Searches the rendered front end output for configured keywords and turns them
@@ -60,14 +63,26 @@ class AutolinkListener
     public function __construct(
         private readonly Connection $connection,
         private readonly ContaoFramework $framework,
+        private readonly ?ResponseTagger $responseTagger = null,
+        private readonly ?LoggerInterface $logger = null,
     ) {
     }
 
     public function __invoke(string $buffer, string $template): string
     {
-        $keywords = $this->connection->fetchAllAssociative(
-            "SELECT * FROM tl_autolink WHERE published = '1' ORDER BY sorting",
-        );
+        // Any change to an autolink entry may affect any page, so every page is
+        // tagged (also before the table exists) and the tag is invalidated on
+        // every change (see TlAutolinkCallbacksListener).
+        $this->responseTagger?->addTags(['contao.db.tl_autolink']);
+
+        try {
+            $keywords = $this->connection->fetchAllAssociative(
+                "SELECT * FROM tl_autolink WHERE published = '1' ORDER BY sorting",
+            );
+        } catch (TableNotFoundException) {
+            // Bundle installed but database not migrated yet: render without autolinks.
+            return $buffer;
+        }
 
         if (!$keywords) {
             return $buffer;
@@ -137,6 +152,17 @@ class AutolinkListener
                 && '' !== (string) $keyword['tag']
                 && false === mb_stripos($buffer, (string) $keyword['tag'], 0, 'UTF-8')
             ) {
+                continue;
+            }
+
+            $modifier = ($keyword['cssFilter'] ? 'su' : 'u').($keyword['casesensitive'] ? '' : 'i');
+            $pattern = self::buildPattern($keyword, $modifier);
+
+            // An invalid regex would make preg_replace() return null and blank
+            // every text node; skip the entry instead.
+            if (false === @preg_match($pattern, '')) {
+                $this->logger?->warning(\sprintf('Autolink entry ID %s skipped: invalid regular expression (%s).', $keyword['id'], preg_last_error_msg()));
+
                 continue;
             }
 
@@ -213,19 +239,23 @@ class AutolinkListener
                 $replacement .= '$3';
             }
 
-            if ($keyword['cssFilter']) {
-                $modifier = 'su'.($keyword['casesensitive'] ? '' : 'i');
+            $textNodes = [];
 
+            if ($keyword['cssFilter']) {
                 foreach ($html->find($keyword['cssSelector']) as $match) {
-                    foreach ($match->find('text') as $text) {
-                        $this->processTextNode($text, $keyword, $replacement, $modifier);
-                    }
+                    array_push($textNodes, ...$match->find('text'));
                 }
             } else {
-                $modifier = 'u'.($keyword['casesensitive'] ? '' : 'i');
+                $textNodes = $html->find('text');
+            }
 
-                foreach ($html->find('text') as $text) {
-                    $this->processTextNode($text, $keyword, $replacement, $modifier);
+            foreach ($textNodes as $text) {
+                if (!$this->processTextNode($text, $keyword, $replacement, $pattern)) {
+                    // E.g. "Backtrack limit exhausted": the node keeps its text,
+                    // the rest of this entry is skipped for this request.
+                    $this->logger?->warning(\sprintf('Autolink entry ID %s skipped: %s.', $keyword['id'], preg_last_error_msg()));
+
+                    break;
                 }
             }
 
@@ -241,14 +271,16 @@ class AutolinkListener
      * Replace the configured term inside a single text node, honouring the
      * protected tags/classes and the no-link tags.
      *
+     * Returns false if the regex engine failed; the node is then left unchanged.
+     *
      * @param mixed $text A simple_html_dom text node
      */
-    private function processTextNode($text, array $keyword, string $replacement, string $modifier): void
+    private function processTextNode($text, array $keyword, string $replacement, string $pattern): bool
     {
         $parent = $text->parent();
 
         if (\in_array($parent->tag, self::PROTECTED_TAGS, true)) {
-            return;
+            return true;
         }
 
         // The grandparent can be null when the text node sits directly under the
@@ -258,19 +290,25 @@ class AutolinkListener
             \in_array($parent->class, self::PROTECTED_CLASSES, true)
             || \in_array($parent->parent()?->class, self::PROTECTED_CLASSES, true)
         ) {
-            return;
+            return true;
         }
 
         if (
             (\in_array($parent->tag, self::NOLINK_TAGS, true) || \in_array($parent->parent()?->tag, self::NOLINK_TAGS, true))
             && ($keyword['addTip'] || 'none' !== $keyword['type'])
         ) {
-            return;
+            return true;
         }
 
-        $pattern = self::buildPattern($keyword, $modifier);
+        $result = preg_replace($pattern, $replacement, $text->innertext);
 
-        $text->innertext = preg_replace($pattern, $replacement, $text->innertext);
+        if (null === $result) {
+            return false;
+        }
+
+        $text->innertext = $result;
+
+        return true;
     }
 
     /**
@@ -285,7 +323,7 @@ class AutolinkListener
      * (ä, ö, ü, ß, é, …) as word boundaries, so a term adjacent to one of them
      * would wrongly match inside a compound word (e.g. "Tor" in "Toröffnung").
      */
-    private static function buildPattern(array $keyword, string $modifier): string
+    public static function buildPattern(array $keyword, string $modifier): string
     {
         $query = str_replace('@', '\@', $keyword['regex'] ? (string) $keyword['tag'] : preg_quote((string) $keyword['tag']));
 

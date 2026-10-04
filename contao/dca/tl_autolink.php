@@ -31,6 +31,7 @@ $GLOBALS['TL_DCA']['tl_autolink'] = [
             'mode'        => 5,
             'fields'      => ['sorting'],
             'flag'        => 1,
+            'rootPaste'   => true,
             'panelLayout' => 'search,limit',
             'icon'        => 'bundles/mandraelcontaoautolink/autolink.svg',
         ],

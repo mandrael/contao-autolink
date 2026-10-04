@@ -19,6 +19,7 @@ $GLOBALS['TL_LANG']['tl_autolink']['url']				= array('URL', 'Please enter the co
 $GLOBALS['TL_LANG']['tl_autolink']['popup']				= array('Open in new window', 'Please check here if the link should open in a new window.');
 $GLOBALS['TL_LANG']['tl_autolink']['casesensitive']		= array('Case sensitive', 'Please check here if your search tag is case sensitive.');
 $GLOBALS['TL_LANG']['tl_autolink']['regex']				= array('Use regular expressions', 'Please check here if you want to enable regular expressions for the search tag. For more information about regular expressions, please see <a href="http://php.net/preg_replace" onclick="window.open(this.href); return false">http://php.net/preg_replace</a>.');
+$GLOBALS['TL_LANG']['tl_autolink']['invalidRegex']		= 'The search tag is not a valid regular expression (%s).';
 $GLOBALS['TL_LANG']['tl_autolink']['selflink']			= array('Apply on target page', 'Please check here if the search tag should also be replaced on its target page.');
 $GLOBALS['TL_LANG']['tl_autolink']['cssFilter']			= array('Limit selection using CSS', 'You can limit the search to certain parts of the page by using CSS selectors.');
 $GLOBALS['TL_LANG']['tl_autolink']['cssSelector']		= array('Selector', 'A selector defines to which HTML element or element group a search applies. You can enter one or more comma separated selectors.');

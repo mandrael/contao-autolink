@@ -7,6 +7,20 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 ## [Unreleased]
 
 ### Behoben
+- **Ungültiger regulärer Ausdruck leerte Seitentext:** Ein Suchbegriff mit aktivierter
+  Option „Reguläre Ausdrücke“ und fehlerhaftem Muster (z. B. `Acli(wort`) oder einem
+  Muster, das am Backtracking-Limit scheitert, ließ `preg_replace()` `null` liefern; jeder
+  Textknoten der Seite wurde dadurch leer. Der Eintrag wird jetzt übersprungen, der Text
+  bleibt erhalten, ins Log geht eine Warnung. Beim Speichern im Backend wird ein
+  ungültiges Muster abgelehnt.
+- **Seiten-Cache:** Änderungen an Autolink-Einträgen (Anlegen, Bearbeiten, Ein-/Ausblenden,
+  Kopieren, Verschieben, Löschen, Wiederherstellen) wirkten erst nach Ablauf des
+  HTTP-Caches. Seiten tragen jetzt den Cache-Tag `contao.db.tl_autolink`, der bei jeder
+  dieser Änderungen invalidiert wird.
+- **Erster Eintrag unter Contao 5:** Ohne vorhandene Einträge ließ sich kein Eintrag
+  anlegen, weil das Einfügen auf oberster Ebene fehlte (`rootPaste`).
+- **Fehlende Tabelle:** Ist `tl_autolink` noch nicht angelegt (Datenbank nicht migriert),
+  wird die Seite ohne Autolinks ausgeliefert statt mit HTTP 500.
 - **Backend-Dark-Mode:** Das Beschreibungs-Suffix in der Autolink-Liste nutzt die
   Contao-Klasse `tl_gray` statt einer festen Farbe (`#b3b3b3`) und schaltet im
   Contao-5-Dark-Mode mit.
