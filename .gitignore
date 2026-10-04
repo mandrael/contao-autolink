@@ -10,3 +10,4 @@
 # Never published; tracked exclusion so it travels with the repo.
 /status.md
 *.bak-*
+/docs/arbeitszeit.md
