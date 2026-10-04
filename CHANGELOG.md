@@ -4,7 +4,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden hier dokumentiert.
 Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/),
 die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 
-## [Unreleased]
+## [0.5.4] – 2026-10-05
 
 ### Behoben
 - **Ungültiger regulärer Ausdruck leerte Seitentext:** Ein Suchbegriff mit aktivierter
@@ -24,6 +24,13 @@ die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/).
 - **Backend-Dark-Mode:** Das Beschreibungs-Suffix in der Autolink-Liste nutzt die
   Contao-Klasse `tl_gray` statt einer festen Farbe (`#b3b3b3`) und schaltet im
   Contao-5-Dark-Mode mit.
+
+### Verifiziert
+- PHPUnit und PHPStan grün; neue Regressionstests decken ungültige und am
+  Backtracking-Limit scheiternde Muster sowie die fehlende Tabelle ab.
+- Live auf Contao 4.13, 5.3 und 5.7 geprüft: Text bleibt erhalten, Backend lehnt
+  ungültige Muster ab, erster Eintrag anlegbar, Cache-Invalidierung bei allen
+  genannten Änderungen, HTTP 200 ohne Tabelle.
 
 ## [0.5.3] – 2026-06-23
 
